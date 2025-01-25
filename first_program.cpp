@@ -6,6 +6,7 @@ COIS 2040 Assignment 1
 
 // Libraries
 #include <iostream>
+#include <iomanip>
 using std::cout, std::cin, std::endl;
 
 // Main program
@@ -32,9 +33,13 @@ int main()
     double dailyProfit = bottlesPerDay * profitPerBottle; // profit per day
     double yearlyProfit = dailyProfit * 365;              // profit per year
 
+    // Correct decimal places for values
+    cout << std::fixed;
+    cout << std::setprecision(2);
+
     // Output results
     cout << "Bottles sold in a day: " << bottlesPerDay << endl;
-    cout << "Daily profit: $" << dailyProfit << endl; // output correct decimal places
+    cout << "Daily profit: $" << dailyProfit << endl;
     cout << "Yearly profit: $" << yearlyProfit << endl;
 
     return 0;
