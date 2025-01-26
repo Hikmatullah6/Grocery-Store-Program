@@ -7,7 +7,8 @@ COIS 2040 Assignment 1
 // Libraries
 #include <iostream>
 #include <iomanip>
-using std::cout, std::cin, std::endl;
+#include <limits>
+using namespace std;
 
 // Main program
 int main()
@@ -15,17 +16,28 @@ int main()
     // Declaration of variables
     int casesPerDay;
     double profitPerBottle = 0.20;
+    bool valid = false; // This variable is for the while loop to check user input
 
-    // Ask the user to input the number of cases sold per day
-    cout << "Enter the number of cases sold per day: ";
-    cin >> casesPerDay;
-
-    // Check if input is valid, could of possibly sold zero cases in a day.
-    while (casesPerDay < 0)
+    // Run while loop until the user input is valid
+    while (!valid)
     {
-        // Ask the user to input the number of cases again
-        cout << "Invalid input \nEnter the number of cases sold per day: ";
+        // Ask user to input value for cases sold per day
+        cout << "Enter the number of cases sold per day: ";
         cin >> casesPerDay;
+
+        // Check if user input is valid
+        if (casesPerDay >= 0 && cin.good())
+        {
+            // If valid, end loop
+            valid = true;
+        }
+        else
+        {
+            // Tell the user the input is invalid
+            cout << "Invalid input, please try again.\n";
+            cin.clear();                                         // Reset the buffer's state
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Empty it to avoid infinite loop
+        }
     }
 
     // Declare and calculate values
